@@ -4,7 +4,7 @@
   "description": "Order you food online",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --port 4000 --config ./webpack.config.js --mode development",
+    "start": "webpack-dev-server --port 4000 --config ./webpack.config.js --mode development --open",
     "build": "webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "npm run build"
@@ -33,6 +33,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "react-dom": "^16.8.3",
+    "react-router-dom": "^4.3.1"
   }
 }
