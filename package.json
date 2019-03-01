@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --port 4000 --config ./webpack.config.js --mode development",
     "build": "webpack --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
+    "express": "^4.16.4",
     "react": "^16.8.3",
     "react-dom": "^16.8.3"
   }
