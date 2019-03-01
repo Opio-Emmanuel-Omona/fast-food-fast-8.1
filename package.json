@@ -6,8 +6,31 @@
   "scripts": {
     "start": "webpack-dev-server --port 4000 --config ./webpack.config.js --mode development --open",
     "build": "webpack --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "heroku-postbuild": "npm run build"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFiles": [
+      "<rootDir>/src/setupTests.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/src/store/index.js",
+      "<rootDir>/src/index.js",
+      "<rootDir>/src/reducers/rootReducer.js"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/setupTests.js",
+      "!src/index.js",
+      "!**/node_modules/**"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "repository": {
     "type": "git",
@@ -22,9 +45,15 @@
   "homepage": "https://github.com/Opio-Emmanuel-Omona/fast-food-fast-8.1#readme",
   "devDependencies": {
     "@babel/core": "^7.3.4",
+    "@babel/polyfill": "^7.0.0-beta.51",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.0.5",
+    "babel-jest": "^23.4.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^23.4.2",
     "react-hot-loader": "^4.7.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
