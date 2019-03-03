@@ -31,6 +31,13 @@ module.exports = {
   
     // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
     transformIgnorePatterns: ['<rootDir>/node_modules/'],
+    modulePathIgnorePatterns: [
+      "<rootDir>/src/store/index.js",
+      "<rootDir>/src/index.js",
+      "<rootDir>/src/reducers/rootReducer.js",
+      "<rootDir>/src/store/index.js",
+      "<rootDir>/src/components/App/index.js"
+    ],
     
     // Indicates whether each individual test should be reported during the run
     verbose: false,

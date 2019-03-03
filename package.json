@@ -14,12 +14,15 @@
   "jest": {
     "testEnvironment": "node",
     "setupFiles": [
-      "<rootDir>/src/setupTests.js"
+      "<rootDir>/enzyme.config.js",
+      "<rootDir>/jest.config.js"
     ],
     "modulePathIgnorePatterns": [
       "<rootDir>/src/store/index.js",
       "<rootDir>/src/index.js",
-      "<rootDir>/src/reducers/rootReducer.js"
+      "<rootDir>/src/reducers/rootReducer.js",
+      "<rootDir>/src/store/index.js",
+      "<rootDir>/src/components/App/index.js"
     ],
     "collectCoverage": true,
     "collectCoverageFrom": [
@@ -49,20 +52,28 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-loader": "^8.0.5",
     "babel-jest": "^23.4.2",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^23.4.2",
     "react-hot-loader": "^4.7.1",
+    "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.4",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-router-dom": "^4.3.1"
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^4.3.1",
+    "react-toastify": "^4.5.2",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
   }
 }
