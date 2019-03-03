@@ -2,25 +2,25 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Navbar, mapStateToProps } from '.';
 
-describe(" Navbar", () => {
+describe('Navbar', () => {
     let wrapper;
     beforeEach(function () {
-        wrapper = shallow(<Navbar />)
+        wrapper = shallow(<Navbar />);
     });
 
-    it("should render without crashing", () => {
+    it('should render without crashing', () => {
         let component = wrapper.find('#navbar');
         expect(component.length).toEqual(1);
     });
 
-    it("should change state after receiveing props", () => {
+    it('should change state after receiveing props', () => {
         wrapper.setProps({
             loginStatus: true
-        })
+        });
         expect(wrapper.state().loggedIn).toEqual(true);
     });
 
-    it("should map state to props", () =>{
+    it('should map state to props', () =>{
         const mockedState = {
             loginReducer: { loginStatus: true }
         };

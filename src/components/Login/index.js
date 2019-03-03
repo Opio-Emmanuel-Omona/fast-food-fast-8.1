@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import login from "../../actions/login";
+import login from '../../actions/login';
 import { toast } from 'react-toastify';
 
 
@@ -27,8 +27,8 @@ export class Login extends React.Component {
             username: null,
             password: null,
             formErrors: {
-                username: "",
-                password: ""
+                username: '',
+                password: ''
             } 
         };
 
@@ -66,10 +66,10 @@ export class Login extends React.Component {
 
         switch (name) {
             case 'username':
-                formErrors.username = value.length < 3 ? 'minimum 3 characters required' : "";
+                formErrors.username = value.length < 3 ? 'minimum 3 characters required' : '';
                 break;
             case 'password':
-                formErrors.password = value.length < 6 ? 'minimum 6 characters required' : "";
+                formErrors.password = value.length < 6 ? 'minimum 6 characters required' : '';
                 break;
             default:
                 break;
@@ -77,7 +77,7 @@ export class Login extends React.Component {
 
         this.setState({
             formErrors, [name]: value
-        })
+        });
     };
 
     render() {
@@ -89,12 +89,12 @@ export class Login extends React.Component {
                     <form onSubmit={this.handleSubmit} noValidate>
                         <div className="username">
                             <label htmlFor="username">Username</label>
-                            <input id="loginUsernameInput" type="text" className={formErrors.username.length > 0 ? "error": null} placeholder="username" name="username" noValidate onChange={this.handleChange} />
+                            <input id="loginUsernameInput" type="text" className={formErrors.username.length > 0 ? 'error': null} placeholder="username" name="username" noValidate onChange={this.handleChange} />
                             {formErrors.username.length > 0 && (<span className="red-text">{formErrors.username}</span>)}
                         </div>
                         <div className="password">
                             <label htmlFor="password">Password</label>
-                            <input id="loginPasswordInput" type="password" className={formErrors.password.length > 0 ? "error": null} placeholder="********" name="password" noValidate onChange={this.handleChange} />
+                            <input id="loginPasswordInput" type="password" className={formErrors.password.length > 0 ? 'error': null} placeholder="********" name="password" noValidate onChange={this.handleChange} />
                             {formErrors.password.length > 0 && (<span className="red-text">{formErrors.password}</span>)}
                         </div>
                         <div className="login">
@@ -104,7 +104,7 @@ export class Login extends React.Component {
                     </form>
                 </div>
             </div>     
-        </div>
+        </div>;
     }
 }
 

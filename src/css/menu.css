@@ -1,0 +1,13 @@
+.orderFoodForm {
+    width: 20%;
+    margin: 2rem !important;
+}
+
+.number {
+    width: 15% !important;
+}
+
+.button {
+    width: 60%;
+    float: right !important;
+}
