@@ -6,7 +6,7 @@ export default function(state = {}, action) {
             return{
                 ...state,
                 signupStatus: true
-            }
+            };
         default:
             return state;
     }

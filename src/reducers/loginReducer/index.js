@@ -5,8 +5,9 @@ export default function(state = {}, action) {
         case type.LOGIN_SUCCESSFUL:
             return{
                 ...state,
-                loginStatus: true
-            }
+                loginStatus: true,
+                username: action.payload.username
+            };
         default:
             return state;
     }

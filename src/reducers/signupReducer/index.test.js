@@ -1,8 +1,8 @@
 import signupReducer from '.';
 import * as types from '../../actions/types';
 
-describe("signup Reducer", () => {
-    it("should return change login state to true on succesful signup", () => {
+describe('signup Reducer', () => {
+    it('should return change login state to true on succesful signup', () => {
         let action = {
             type: types.SIGNUP_SUCCESSFUL,
         };
@@ -11,10 +11,10 @@ describe("signup Reducer", () => {
         expect(state.signupStatus).toBeTruthy();
     });
 
-    it("should return the initial state if no action type is present", () => {
+    it('should return the initial state if no action type is present', () => {
         let action = { type: null };
         let initialState = { loginStatus: false };
         let state = signupReducer(initialState, action);
         expect(state.signupStatus).toBeFalsy();
-    })
+    });
 });

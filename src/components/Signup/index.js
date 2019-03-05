@@ -1,7 +1,7 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import signup from "../../actions/signup";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import signup from '../../actions/signup';
 
 // RegExp from code life: https://github.com/MyNameIsURL/react-form-validation-tutorial/blob/master/src/App.js
 const emailRegExp = RegExp(
@@ -110,7 +110,7 @@ export class Signup extends React.Component {
         <div className="wrapper">
           <div className="form-wrapper">
             <h1>Create Account</h1>
-            <form onSubmit={this.handleSubmit} noValidate>
+            <form className="flow-text" onSubmit={this.handleSubmit} noValidate>
               <div className="userName">
                 <label htmlFor="userName">Username</label>
                 <input

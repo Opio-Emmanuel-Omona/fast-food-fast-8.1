@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Signup, mapStateToProps } from '.';
 
-describe("Signup", () =>{
+describe('Signup', () =>{
     const testValues = {
         username: 'username',
         password: 'password',
@@ -15,19 +15,19 @@ describe("Signup", () =>{
         signupStatus: true,
         history: { push: jest.fn() },
         signup: jest.fn()
-    }
+    };
 
     let wrapper;
     beforeEach( function () {
         wrapper = shallow(<Signup {...props} />);
     });
 
-    it("should rendder without crashing", () => {
+    it('should rendder without crashing', () => {
         let component = wrapper.find('#signupForm');
         expect(component.length).toEqual(1);
     });
 
-    it("should change state on change of an input field", () => {
+    it('should change state on change of an input field', () => {
         wrapper.find('#signupUsernameInput').simulate('change', {
             target: {
                 name: 'userName',
@@ -72,10 +72,10 @@ describe("Signup", () =>{
         expect(wrapper.state().confirm).toEqual('password');
     });
 
-    it("should submit the form", () => {
+    it('should submit the form', () => {
         wrapper.setProps({
             props
-        })
+        });
         wrapper.instance().setState({
             userName: 'username',
             password: 'password',
@@ -83,23 +83,23 @@ describe("Signup", () =>{
             phone: 'phone',
             confirm: 'confirm',
             formErrors: {
-                userName: "",
-                password: "",
-                phone: "",
-                confirm: "",
-                email: ""
+                userName: '',
+                password:'',
+                phone: '',
+                confirm: '',
+                email: ''
             },
             login: jest.fn(),
-        })
+        });
         let compoennt  = wrapper.find('form').simulate('submit', { preventDefault()  {}, });
         expect(compoennt.length).toEqual(1);
     });
 
-    it("should map states to props", () => {
+    it('should map states to props', () => {
         const mockState = {
             signupReducer: { signupStatus: true }
-        }
+        };
         const state = mapStateToProps(mockState);
-        expect(state.signupStatus).toBeTruthy()
+        expect(state.signupStatus).toBeTruthy();
     });
 });
