@@ -1,4 +1,4 @@
-import { SIGNUP_SUCCESSFUL } from '../types';
+import { SIGNUP_SUCCESSFUL, SIGNUP_ERROR } from '../types';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
@@ -18,7 +18,10 @@ const signup = (signup_detail) => dispatch => {
                 toast.error(res.data.message);
             }
         }).catch(err => {
-            console.log(err);
+            dispatch({
+                type: SIGNUP_ERROR,
+                payload: err.response
+            });
         });
 };
 

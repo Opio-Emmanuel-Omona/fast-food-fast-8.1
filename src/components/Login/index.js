@@ -98,7 +98,7 @@ export class Login extends React.Component {
                             {formErrors.password.length > 0 && (<span className="red-text">{formErrors.password}</span>)}
                         </div>
                         <div className="login">
-                            <button type="submit">Login</button>
+                            <input type="submit" value="Login" className="btn btn-primary"/>
                             <NavLink to='signup'><p><small>Don't Have Account?</small></p></NavLink>
                         </div>
                     </form>

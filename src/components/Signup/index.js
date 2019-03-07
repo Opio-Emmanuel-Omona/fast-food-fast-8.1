@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
 import signup from '../../actions/signup';
 
 // RegExp from code life: https://github.com/MyNameIsURL/react-form-validation-tutorial/blob/master/src/App.js
@@ -32,12 +33,12 @@ export class Signup extends React.Component {
       email: null,
       password: null,
       formErrors: {
-        userName: "",
-        phone: "",
-        confirm: "",
-        email: "",
-        password: "",
-        confirm: ""
+        userName: '',
+        phone: '',
+        confirm: '',
+        email: '',
+        password: '',
+        confirm: ''
       }
     };
 
@@ -65,6 +66,8 @@ export class Signup extends React.Component {
       };
 
       this.props.signup(signup_detail);
+    }else {
+      toast.error('Cannot submit form with errors');
     }
   }
 
@@ -74,24 +77,24 @@ export class Signup extends React.Component {
     let formErrors = this.state.formErrors;
 
     switch (name) {
-      case "phone":
+      case 'phone':
         formErrors.phone =
-          value.length != 12 ? "Invalid phone number" : "";
+          value.length != 12 ? 'Invalid phone number' : '';
         break;
-      case "userName":
+      case 'userName':
         formErrors.userName =
-          value.length < 3 ? "minimum 3 characters required" : "";
+          value.length < 3 ? 'minimum 3 characters required' : '';
         break;
-      case "confirm":
+      case 'confirm':
         formErrors.confirm =
-          value != this.state.password ? "Passwords don't match" : "";
+          value != this.state.password ? 'Passwords don\'t match' : '';
         break;
-      case "email":
-        formErrors.email = emailRegExp.test(value) ? "" : "Invalid email";
+      case 'email':
+        formErrors.email = emailRegExp.test(value) ? '' : 'Invalid email';
         break;
-      case "password":
+      case 'password':
         formErrors.password =
-          value.length < 6 ? "minimum 6 characters required" : "";
+          value.length < 6 ? 'minimum 6 characters required' : '';
         break;
       default:
         break;
@@ -116,7 +119,7 @@ export class Signup extends React.Component {
                 <input
                   id="signupUsernameInput"
                   type="text"
-                  className={formErrors.userName.length > 0 ? "error" : null}
+                  className={formErrors.userName.length > 0 ? 'error' : null}
                   placeholder="Username"
                   name="userName"
                   noValidate
@@ -131,7 +134,7 @@ export class Signup extends React.Component {
                 <input
                   id="signupEmailInput"
                   type="text"
-                  className={formErrors.email.length > 0 ? "error" : null}
+                  className={formErrors.email.length > 0 ? 'error' : null}
                   placeholder="example@domain.com"
                   name="email"
                   noValidate
@@ -146,7 +149,7 @@ export class Signup extends React.Component {
                 <input
                   id="signupPhoneInput"
                   type="number"
-                  className={formErrors.phone.length > 0 ? "error" : null}
+                  className={formErrors.phone.length > 0 ? 'error' : null}
                   placeholder="+256773480077"
                   name="phone"
                   noValidate
@@ -161,7 +164,7 @@ export class Signup extends React.Component {
                 <input
                   id="signupPasswordInput"
                   type="password"
-                  className={formErrors.password.length > 0 ? "error" : null}
+                  className={formErrors.password.length > 0 ? 'error' : null}
                   placeholder="********"
                   name="password"
                   noValidate
@@ -176,7 +179,7 @@ export class Signup extends React.Component {
                 <input
                 id="signupConfirmInput"
                   type="password"
-                  className={formErrors.confirm.length > 0 ? "error" : null}
+                  className={formErrors.confirm.length > 0 ? 'error' : null}
                   placeholder="********"
                   name="confirm"
                   noValidate
@@ -187,7 +190,7 @@ export class Signup extends React.Component {
                 )}
               </div>
               <div className="createAccount">
-                <button type="submit">Create Account</button>
+                <input type="submit" value="Create Account" className="btn btn-primary" />
                 <NavLink to="/login">
                   <p>
                     <small>Already Have Account?</small>
