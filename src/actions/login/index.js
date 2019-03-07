@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESSFUL } from '../types';
+import { LOGIN_SUCCESSFUL, LOGIN_ERROR } from '../types';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
@@ -20,7 +20,10 @@ const login = (login_detail) => dispatch => {
                 toast.error(res.data.message);
             }
         }).catch(err => {
-            console.log(err);
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: err.response
+            });
         });
 };
 
