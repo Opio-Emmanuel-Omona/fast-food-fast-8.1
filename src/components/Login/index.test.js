@@ -51,7 +51,8 @@ describe('Login', () => {
         expect(wrapper.state().password).toEqual('password');
     });
 
-    it('should submit the form without errors', () => {
+    // POSITVE TEST
+    it('should call login fn() when submitting form without errors', () => {
         wrapper.setProps({
             props
         });
@@ -68,7 +69,8 @@ describe('Login', () => {
         expect(props.login).toHaveBeenCalled();
     });
 
-    it('should toast erroes when submit the form with errors', () => {
+    // NEGATIVE TEST
+    it('should NOT call login fn() when submitting form with errors', () => {
         wrapper.find('form').simulate('submit', { preventDefault()  {}, });
         expect(props.login).toHaveBeenCalledTimes(0);
     });
