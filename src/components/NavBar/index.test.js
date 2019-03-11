@@ -2,10 +2,14 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Navbar, mapStateToProps } from '.';
 
+const props = {
+    logout: jest.fn()
+};
+
 describe('Navbar', () => {
     let wrapper;
     beforeEach(function () {
-        wrapper = shallow(<Navbar />);
+        wrapper = shallow(<Navbar {...props}/>);
     });
 
     it('should render without crashing', () => {

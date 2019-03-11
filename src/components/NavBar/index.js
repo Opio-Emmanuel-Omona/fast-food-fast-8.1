@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logout } from '../../actions/login';
 
 
 export class Navbar extends React.Component {
@@ -19,7 +20,7 @@ export class Navbar extends React.Component {
         if(loginStatus === true) {
             this.setState({
                 loggedIn: true,
-                username: localStorage.getItem('username')
+                username: nextProps.username
             });
         }
     }
@@ -28,17 +29,18 @@ export class Navbar extends React.Component {
         localStorage.clear();
         this.setState({
             loggedIn: false,
-            username: localStorage.getItem('username')
+            username: ''
         });
+        this.props.logout();
     }
 
     render() {
         return (
             <nav id="navbar" className="nav-wrapper darken-3">
                 <div className="container">
-                    <a className="brand-logo"><NavLink to="/">Fast Food Fast</NavLink></a>
+                    <NavLink className="brand-logo" to="/">Fast Food Fast</NavLink>
                     <ul className="right">
-                        { this.state.username ?<li> <li><NavLink to="">{localStorage.getItem('username')}</NavLink> </li> <li><NavLink to='/login' onClick={this.clear} >Logout</NavLink></li> </li>: <span>
+                        { this.props.username ?<li> <li><NavLink to="">{this.props.username}</NavLink> </li > <li onClick={this.clear} >Logout</li></li>: <span>
                             <li><NavLink to="/login">Login</NavLink></li>
                             <li><NavLink to="/signup">Signup</NavLink></li> 
                         </span>} 
@@ -54,4 +56,4 @@ export const mapStateToProps = state => ({
     username: state.loginReducer.username
 });
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);
