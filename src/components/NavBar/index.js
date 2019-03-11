@@ -24,7 +24,7 @@ export class Navbar extends React.Component {
         }
     }
 
-    clear(e){
+    clear = (e) => {
         localStorage.clear();
         this.setState({
             loggedIn: false,
@@ -39,7 +39,7 @@ export class Navbar extends React.Component {
                     <a className="brand-logo">Fast Food Fast</a>
                     <ul className="right">
                         <li><NavLink to="/">Home</NavLink></li>
-                        { this.state.username ?<li> <li><NavLink to="">{localStorage.getItem('username')}</NavLink> </li> <li><NavLink to='/login' onClick={this.clear.bind(this)} >Logout</NavLink></li> </li>: <span>
+                        { this.state.username ?<li> <li><NavLink to="">{localStorage.getItem('username')}</NavLink> </li> <li><NavLink to='/login' onClick={this.clear} >Logout</NavLink></li> </li>: <span>
                             <li><NavLink to="/login">Login</NavLink></li>
                             <li><NavLink to="/signup">Signup</NavLink></li> 
                         </span>} 

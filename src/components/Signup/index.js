@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import signup from '../../actions/signup';
+import Loader from '../Loader';
 
 // RegExp from code life: https://github.com/MyNameIsURL/react-form-validation-tutorial/blob/master/src/App.js
 const emailRegExp = RegExp(
@@ -22,7 +23,7 @@ const formValid = ({ formErrors, ...rest }) => {
   return valid;
 };
 
-export class Signup extends React.Component {
+export class Signup extends Component {
   constructor(props) {
     super(props);
 
@@ -32,6 +33,7 @@ export class Signup extends React.Component {
       userName: null,
       email: null,
       password: null,
+      loading: false,
       formErrors: {
         userName: '',
         phone: '',
@@ -42,22 +44,26 @@ export class Signup extends React.Component {
       }
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
       const { history, signupStatus } = nextProps;
+
+      this.setState({
+        loading:false
+      });
+
       if(signupStatus === true) {
           history.push('/login');
       }
+      
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
 
     if (formValid(this.state)) {
-      var signup_detail = {
+      let signup_detail = {
         email: this.state.email,
         username: this.state.userName,
         password: this.state.password,
@@ -65,13 +71,17 @@ export class Signup extends React.Component {
         phone_no: this.state.phone
       };
 
+      this.setState({
+        loading: true
+      })
+
       this.props.signup(signup_detail);
     }else {
       toast.error('Cannot submit form with errors');
     }
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     const { name, value } = event.target;
 
     let formErrors = this.state.formErrors;
@@ -109,11 +119,12 @@ export class Signup extends React.Component {
   render() {
     const { formErrors } = this.state;
     return (
-      <div id="signupForm" className="container">
+      <div id="signupForm" className="container wrap">
         <div className="wrapper">
           <div className="form-wrapper">
             <h1>Create Account</h1>
-            <form className="flow-text" onSubmit={this.handleSubmit} noValidate>
+            {this.state.loading ? <Loader />: ''}
+            <form className="" onSubmit={this.handleSubmit} noValidate>
               <div className="userName">
                 <label htmlFor="userName">Username</label>
                 <input
@@ -190,10 +201,10 @@ export class Signup extends React.Component {
                 )}
               </div>
               <div className="createAccount">
-                <input type="submit" value="Create Account" className="btn btn-primary" />
+                <input type="submit" value="Create Account" className="btn btn-primary" disabled={this.state.loading} />
                 <NavLink to="/login">
                   <p>
-                    <small>Already Have Account?</small>
+                    <small className="label">Already Have Account?</small>
                   </p>
                 </NavLink>
               </div>
@@ -206,7 +217,8 @@ export class Signup extends React.Component {
 }
 
 export const mapStateToProps = state => ({
-  signupStatus: state.signupReducer.signupStatus
+  signupStatus: state.signupReducer.signupStatus,
+  message: state.signupReducer.message
 });
 
 export default connect(

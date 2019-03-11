@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import login from '../../actions/login';
 import { toast } from 'react-toastify';
+import Loader from '../Loader';
 
 
 const formValid = ({formErrors, ...rest}) => {
@@ -26,31 +27,37 @@ export class Login extends React.Component {
         this.state = {
             username: null,
             password: null,
+            loading: false,
             formErrors: {
                 username: '',
                 password: ''
             } 
         };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
+        this.setState({
+            loading: false
+        });
         const { history, loginStatus } = nextProps;
         if(loginStatus === true && localStorage.getItem('username') === this.state.username) {
             history.push('/');
         }
     }
 
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault();
         if (formValid(this.state)) {
-            var login_detail = {
+            let login_detail = {
                 username: this.state.username,
                 password: this.state.password
             };
 
+            this.setState({
+                loading: true
+            });
+            
             this.props.login(login_detail);
             
         }
@@ -59,7 +66,7 @@ export class Login extends React.Component {
         }
     };
 
-    handleChange(event) {
+    handleChange = (event) => {
         const { name, value } = event.target;
 
         let formErrors = this.state.formErrors;
@@ -82,10 +89,11 @@ export class Login extends React.Component {
 
     render() {
         const { formErrors } = this.state;
-        return <div id="loginForm" className="container">
+        return <div id="loginForm" className="container wrap">
             <div className="wrapper">
                 <div className="form-wrapper">
                     <h1>Login</h1>
+                    {this.state.loading ? <Loader />: ''}
                     <form onSubmit={this.handleSubmit} noValidate>
                         <div className="username">
                             <label htmlFor="username">Username</label>
@@ -98,8 +106,8 @@ export class Login extends React.Component {
                             {formErrors.password.length > 0 && (<span className="red-text">{formErrors.password}</span>)}
                         </div>
                         <div className="login">
-                            <input type="submit" value="Login" className="btn btn-primary"/>
-                            <NavLink to='signup'><p><small>Don't Have Account?</small></p></NavLink>
+                            <input type="submit" value="Login" className="btn btn-primary"  disabled={this.state.loading}/>
+                            <NavLink to='signup'><p><small className="label">Don't Have Account?</small></p></NavLink>
                         </div>
                     </form>
                 </div>
@@ -109,7 +117,8 @@ export class Login extends React.Component {
 }
 
 export const mapStateToProps = state => ({
-    loginStatus: state.loginReducer.loginStatus
+    loginStatus: state.loginReducer.loginStatus,
+    message: state.loginReducer.message
 });
   
 export default connect(

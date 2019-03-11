@@ -15,13 +15,18 @@ const signup = (signup_detail) => dispatch => {
                 toast.success('Account Created');
             }
             else{
+                dispatch({
+                    type: SIGNUP_ERROR,
+                    message: res.data.message
+                });
                 toast.error(res.data.message);
             }
         }).catch(err => {
             dispatch({
                 type: SIGNUP_ERROR,
-                payload: err.response
+                message: err.response.data.message
             });
+            toast.error(err.response.data.message);
         });
 };
 
