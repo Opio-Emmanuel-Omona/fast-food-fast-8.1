@@ -7,7 +7,7 @@ const initialState = {
 export default function(state = initialState, action) {
     switch (action.type) {
         case type.LOGIN_SUCCESSFUL:
-            return{
+            return {
                 ...state,
                 loginStatus: true,
                 username: action.payload.username
@@ -17,6 +17,12 @@ export default function(state = initialState, action) {
                 ...state,
                 loginStatus: false,
                 message: action.message
+            };
+        case type.LOGOUT_SUCCESS:
+            return {
+                ...state,
+                loginStatus: false,
+                username: ''
             };
         default:
             return state;

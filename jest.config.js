@@ -36,7 +36,8 @@ module.exports = {
       "<rootDir>/src/index.js",
       "<rootDir>/src/reducers/rootReducer.js",
       "<rootDir>/src/store/index.js",
-      "<rootDir>/src/components/App/index.js"
+      "<rootDir>/src/components/App/index.js",
+      "<rootDir>/src/components/Home/index.js"
     ],
     
     // Indicates whether each individual test should be reported during the run

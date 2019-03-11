@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESSFUL, LOGIN_ERROR } from '../types';
+import { LOGIN_SUCCESSFUL, LOGIN_ERROR, LOGOUT_SUCCESS } from '../types';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
@@ -30,6 +30,12 @@ const login = (login_detail) => dispatch => {
             });
             toast.error(err.response.data.message);
         });
+};
+
+export  const logout = () => dispatch => {
+    dispatch({
+        type: LOGOUT_SUCCESS
+    });
 };
 
 export default login;

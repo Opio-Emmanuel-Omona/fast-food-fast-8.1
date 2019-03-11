@@ -40,8 +40,9 @@ export class Login extends React.Component {
         this.setState({
             loading: false
         });
+        
         const { history, loginStatus } = nextProps;
-        if(loginStatus === true && localStorage.getItem('username') === this.state.username) {
+        if(loginStatus === true) {
             history.push('/');
         }
     }
