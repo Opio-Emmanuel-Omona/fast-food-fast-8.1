@@ -21,7 +21,7 @@ describe('Login', () => {
         wrapper  = shallow(<Login {...props}/>);
     });
 
-    it('should render without crushing', () => {
+    it('should render component without crushing', () => {
         let component = wrapper.find('#loginForm');
         expect(component.length).toEqual(1);
     });
