@@ -1,9 +1,21 @@
 body {
+<<<<<<< HEAD
     background-color: #f4f4f4;
+=======
+  background-color: #f4f4f4;
+>>>>>>> chore(feedback): work on feedback
 }
 
 label {
-    font-size: 1.5rem !important;
+  font-size: 1.5rem !important;
+}
+
+.label {
+  font-size: 1.2rem !important;
+}
+
+#navbar {
+  margin-bottom: 2rem;
 }
 
 .label {
@@ -20,3 +32,13 @@ label {
     border-radius: 1.5%;
 }
 
+@media only screen and (max-width: 1000px) {
+  nav .brand-logo {
+    font-size: 15px;
+    margin-left: -32%;
+  }
+  #test{
+      margin-top:30%;
+  }
+
+}
