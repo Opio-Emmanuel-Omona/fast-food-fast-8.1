@@ -19,4 +19,10 @@ describe('login Reducer', () => {
         let state = loginReducer(initialState, action);
         expect(state.loginStatus).toBeFalsy();
     });
+
+    it('should return false on unsuccessful login', () => {
+        let action = { type: types.LOGIN_ERROR };
+        let state = loginReducer({}, action);
+        expect(state.signupStatus).toBeFalsy();
+    });
 });

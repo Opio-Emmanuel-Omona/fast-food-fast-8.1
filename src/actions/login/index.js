@@ -7,7 +7,7 @@ let headers = { 'Content-type': 'application/json' };
 const login = (login_detail) => dispatch => {
     axios.post(url, login_detail, { headers })
         .then(res => {
-            if(res.status){
+            if(res.data.status === true){
                 dispatch({
                     type: LOGIN_SUCCESSFUL,
                     payload: res.data
@@ -17,13 +17,18 @@ const login = (login_detail) => dispatch => {
                 toast.success('Login Succesful');
             }
             else{
+                dispatch({
+                    type: LOGIN_ERROR,
+                    message: res.data.message
+                });
                 toast.error(res.data.message);
             }
         }).catch(err => {
             dispatch({
                 type: LOGIN_ERROR,
-                payload: err.response
+                message: err.response.data.message
             });
+            toast.error(err.response.data.message);
         });
 };
 

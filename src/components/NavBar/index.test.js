@@ -20,6 +20,11 @@ describe('Navbar', () => {
         expect(wrapper.state().loggedIn).toEqual(true);
     });
 
+    it('should change loggedIn state to false on logout', () => {
+        wrapper.instance().clear();
+        expect(wrapper.state().loggedIn).toBeFalsy();
+    });
+
     it('should map state to props', () =>{
         const mockedState = {
             loginReducer: { loginStatus: true }

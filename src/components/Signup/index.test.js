@@ -91,8 +91,13 @@ describe('Signup', () =>{
             },
             login: jest.fn(),
         });
-        let compoennt  = wrapper.find('form').simulate('submit', { preventDefault()  {}, });
-        expect(compoennt.length).toEqual(1);
+        wrapper.find('form').simulate('submit', { preventDefault()  {}, });
+        expect(props.signup).toHaveBeenCalled();
+    });
+
+    it('should not submit form with errors', () => {
+        wrapper.find('form').simulate('submit', { preventDefault()  {}, });
+        expect(props.signup).toHaveBeenCalledTimes(0);
     });
 
     it('should map states to props', () => {
