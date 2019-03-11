@@ -89,7 +89,7 @@ export class Login extends React.Component {
 
     render() {
         const { formErrors } = this.state;
-        return <div id="loginForm" className="container wrap">
+        return <div id="loginForm" className="container wrap" id="test">
             <div className="wrapper">
                 <div className="form-wrapper">
                     <h1>Login</h1>
