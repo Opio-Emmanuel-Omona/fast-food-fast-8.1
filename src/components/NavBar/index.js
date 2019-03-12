@@ -38,7 +38,7 @@ export class Navbar extends React.Component {
         return (
             <nav id="navbar" className="nav-wrapper darken-3">
                 <div className="container">
-                    <a className="brand-logo"><NavLink to="/">Fast Food Fast</NavLink></a>
+                    <NavLink className="brand-logo" to="/">Fast Food Fast</NavLink>
                     <ul className="right">
                         { this.props.username ?<li> <li><NavLink to="">{this.props.username}</NavLink> </li > <li onClick={this.clear} >Logout</li></li>: <span>
                             <li><NavLink to="/login">Login</NavLink></li>
