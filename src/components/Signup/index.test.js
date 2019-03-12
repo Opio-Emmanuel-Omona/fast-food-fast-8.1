@@ -22,7 +22,11 @@ describe('Signup', () =>{
         wrapper = shallow(<Signup {...props} />);
     });
 
-    it('should rendder without crashing', () => {
+    afterEach( function () {
+        wrapper = null;
+    });
+
+    it('should contain one form', () => {
         let component = wrapper.find('#signupForm');
         expect(component.length).toEqual(1);
     });

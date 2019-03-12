@@ -21,7 +21,11 @@ describe('Login', () => {
         wrapper  = shallow(<Login {...props}/>);
     });
 
-    it('should render component without crushing', () => {
+    afterEach( function () {
+        wrapper = null;
+    });
+
+    it('should contain one form', () => {
         let component = wrapper.find('#loginForm');
         expect(component.length).toEqual(1);
     });
