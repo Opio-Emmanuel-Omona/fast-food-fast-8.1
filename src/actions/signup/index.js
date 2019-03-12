@@ -2,7 +2,7 @@ import { SIGNUP_SUCCESSFUL, SIGNUP_ERROR } from '../types';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-let url = 'http://fast-food-fast-op.herokuapp.com/api/v2/auth/signup';
+let url = 'https://fast-food-fast-op.herokuapp.com/api/v2/auth/signup';
 let headers = { 'Content-type': 'application/json' };
 const signup = (signup_detail) => dispatch => {
     axios.post(url, signup_detail, {headers} )
